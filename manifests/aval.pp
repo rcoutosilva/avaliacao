@@ -1,7 +1,7 @@
 exec { "apt-update":
 	command => "/usr/bin/apt-get update"
 }
-package { ["apache2","mysql-server","unzip","vim"]:
+package { ["apache2","libapache2-mod-wsgi","unzip","vim","python-virtualenv","python3","python3-pip","python3-dev"]:
 	ensure => installed,
 	require => Exec["apt-update"]
 }
@@ -14,10 +14,4 @@ service { "apache2":
         require => Package["apache2"]
 }
 
-service { "mysql-server":
-	ensure => running,
-	enable => true,
-	hasrestart => true,
-	require => Package["mysql-server"]
-}
 
